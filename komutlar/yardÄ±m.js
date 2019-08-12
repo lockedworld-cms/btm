@@ -1,40 +1,30 @@
 const Discord = require('discord.js');
 const ayarlar = require('../ayarlar.json');
 
-var prefix = ayarlar.prefix;
+let botid = ('581596432780361750') //bu yere botun id'sini yapıştırın.
+//eğer botunuz dbl(discord bot list) de yoksa Bota Oy Ver (Vote) olmucaktır.
 
-exports.run = (client, message, params) => {
-
-  if (!params[0]) {
-    const commandNames = Array.from(client.commands.keys());
-    const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
-    message.author.sendCode('asciidoc', `= Komut Listesi =\n\n[Komut hakkında bilgi için ${ayarlar.prefix}yardım <komut adı>]\n\n${client.commands.map(c => `${ayarlar.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}`).join('\n')}`);
-  if (message.channel.type !== 'dm') {
-    const ozelmesajkontrol = new Discord.RichEmbed()
-    .setColor(0x00AE86)
-    .setTimestamp()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setDescription('Özel mesajlarını kontrol et. :postbox:');
-    message.channel.sendEmbed(ozelmesajkontrol) }
-  } else {
-    let command = params[0];
-    if (client.commands.has(command)) {
-      command = client.commands.get(command);
-      message.author.sendCode('asciidoc', `= ${command.help.name} = \n${command.help.description}\nDoğru kullanım: ` + prefix + `${command.help.usage}`);
-    }
-  }
+exports.run = (client, message, args) => {
+    const embed = new Discord.RichEmbed()
+        .setAuthor(`${client.user.username} `, client.user.avatarURL)
+        .setColor('0x36393E')
+        .setTitle(`${client.user.username} - Komutlar`)
+        .setDescription(`:white_small_square: | **${ayarlar.prefix}komut** Tüm Komutlar.\n :white_small_square: | **${ayarlar.prefix}komut2** Tüm komutlar.\n :white_small_square: |  **${ayarlar.prefix}komut3** Bot Komutları.`)
+        .setThumbnail(client.user.avatarURL)
+.addField(`» Linkler`, `[Bot Davet Linki](https://discordapp.com/oauth2/authorize?client_id=${botid}&scope=bot&permissions=805314622) **|** [Destek Sunucusu](https://discord.gg/ND4kQkv) **|** [Bota Oy Ver (Vote)](https://discordbots.org/bot/${botid}/vote)`)
+    message.channel.sendEmbed(embed);
 
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['h', 'halp', 'help', 'y'],
+  aliases: ['help'],
   permLevel: 0
 };
 
 exports.help = {
   name: 'yardım',
-  description: 'Tüm komutları gösterir.',
-  usage: 'yardım [komut]'
+  description: '',
+  usage: 'yardım'
 };
