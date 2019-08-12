@@ -1,25 +1,33 @@
 const Discord = require('discord.js');
 
-
-exports.run = function(client, message) {
-
-    const embed = new Discord.RichEmbed()
-        .setAuthor(message.author.tag)
-        .setImage(message.author.avatarURL)
-
-    message.channel.send(embed);
-
+exports.run = (client, message, args) => {
+    
+    let user;
+    
+    if (message.mentions.users.first()) {
+      user = message.mentions.users.first();
+    } else {
+        user = message.author;
+    }
+    
+    const avatar = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor("» Buyur Avatarın,")
+        .setImage(user.avatarURL)
+    message.channel.sendEmbed(avatar)
+    
 };
 
 exports.conf = {
   enabled: true, 
-  guildOnly: true, 
-  aliases: ['avatarım'],
-  permLevel: 0 
+  guildOnly: false, 
+  aliases: ["pp"],
+  permLevel: `Yetki gerekmiyor.` 
 };
 
 exports.help = {
-  name: 'avatar', 
-  description: 'Avatarınızı gösterir',
-  usage: 'avatar'
+  name: 'avatar',
+  category: 'kullanıcı',
+  description: 'Belirtilen Kişinin veya Komutu Yazan Kişinin Avatarını Atar.',
+  usage: '+avatar <@kişi-etiket> veya +avatar'
 };
