@@ -10,12 +10,12 @@ if (mesaj.length < 1) return message.reply('Yazmam için herhangi bir şey yazma
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['say', 'söyle'],
-  permLevel: 0
+  aliases: [],
+  permLevel: 4
 };
 
 exports.help = {
-  name: 'yaz',
-  description: 'İstediğiniz şeyi bota yazdırır.',
-  usage: 'yaz [yazdırmak istediğiniz şey]'
+  name: 'yaz-bot',
+  description: '[Admin Komutu]',
+  usage: 'yaz-bot [yazdırmak istediğiniz şey]'
 };
