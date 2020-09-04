@@ -69,7 +69,7 @@
     "express-session": "^1.16.1",
     "helmet": "^3.20.0",
     "klaw": "^3.0.0",
-    "marked": "^0.6.3",
+    "marked": "^1.1.1",
     "memorystore": "^1.6.1",
     "passport": "^0.4.0",
     "passport-discord": "^0.1.3",
